@@ -1,0 +1,11 @@
+{
+    "packages": [
+        "dotnet-sdk@latest"
+    ],
+    "shell": {
+        "init_hook": null,
+        "scripts": {
+            "run_test": "dotnet run"
+        }
+    }
+}

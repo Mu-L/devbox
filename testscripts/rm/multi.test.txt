@@ -1,0 +1,20 @@
+exec devbox init
+
+exec devbox add hello vim
+exec devbox run hello
+stdout 'Hello, world!'
+
+exec devbox rm vim hello
+! exec devbox run hello
+! exec devbox run vim
+
+json.superset devbox.json expected.json
+
+# Check that profile history was cleaned up. There should only be
+# default and default-N-link.
+glob -count=2 .devbox/nix/profile/*
+
+-- expected.json --
+{
+  "packages": []
+}

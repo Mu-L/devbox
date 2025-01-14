@@ -1,0 +1,12 @@
+{
+  "packages": [
+    "bundler@2.4",
+    "ruby@3.1"
+  ],
+  "shell": {
+    "init_hook": [],
+    "scripts": {
+      "run_test": "ruby -e 'puts \"Hello from Ruby #{RUBY_VERSION}\"'"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "packages": [
+        "gradle@latest",
+        "jdk@19",
+        "binutils@latest"
+    ],
+    "shell": {
+        "init_hook": null,
+        "scripts": {
+            "run_test": [
+                "gradle build",
+                "gradle run"
+            ]
+        }
+    }
+}

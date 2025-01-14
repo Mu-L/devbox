@@ -1,0 +1,106 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "apacheHttpd@2.4.58": {
+      "last_modified": "2024-04-03T07:31:48Z",
+      "plugin_version": "0.0.2",
+      "resolved": "github:NixOS/nixpkgs/d03a4482228d4d6dbd2d4b425b6dfcd49ebe765f#apacheHttpd",
+      "source": "devbox-search",
+      "version": "2.4.58",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/qfh8f4l6cadv117hfh9xyia4miih4wpy-apache-httpd-2.4.58",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/dxx8z8nvjbgh2chqq3qlrc52n0w9nlwf-apache-httpd-2.4.58-man",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/pvr18halwxvrv4a3d7ymyjadqjnk3d1d-apache-httpd-2.4.58-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/3xsvcdh7w1x59pymkpzmihbvsm65gpm7-apache-httpd-2.4.58-doc"
+            }
+          ],
+          "store_path": "/nix/store/qfh8f4l6cadv117hfh9xyia4miih4wpy-apache-httpd-2.4.58"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/wy3lzv5h5k3smcgpac6bwls31dhl99ki-apache-httpd-2.4.58",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/znwzwmsrsjcdrr6psyn8innsd9nwzj7m-apache-httpd-2.4.58-man",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/0h5gpxw5sxwpgz946vlb22pkax7a7sf6-apache-httpd-2.4.58-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/5vf79ccpqxqnrw27ncyffzh3rcw12f8z-apache-httpd-2.4.58-doc"
+            }
+          ],
+          "store_path": "/nix/store/wy3lzv5h5k3smcgpac6bwls31dhl99ki-apache-httpd-2.4.58"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/nldsf6h7y4m4vfm26ank7kjvs05g88gc-apache-httpd-2.4.58",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/i59k98mj24c35yyimpnimy13b9as05dd-apache-httpd-2.4.58-man",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/4z8i6wwrf3yisklr368l0rcrpr6h3319-apache-httpd-2.4.58-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/p9y79pah2crpqq42y24q7ns744bjpphm-apache-httpd-2.4.58-doc"
+            }
+          ],
+          "store_path": "/nix/store/nldsf6h7y4m4vfm26ank7kjvs05g88gc-apache-httpd-2.4.58"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/85a038nhh046pf85za9ygwrgnxyxm9xl-apache-httpd-2.4.58",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/ns7lx2bqkb6wy1ikv2sa64db8xialrk9-apache-httpd-2.4.58-man",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/rmpym29gg5wdy3pxbkimjjlcgpdfsq25-apache-httpd-2.4.58-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/c6yfg14y2hmya6qd2y31fdk7iyg2fh48-apache-httpd-2.4.58-doc"
+            }
+          ],
+          "store_path": "/nix/store/85a038nhh046pf85za9ygwrgnxyxm9xl-apache-httpd-2.4.58"
+        }
+      }
+    }
+  }
+}

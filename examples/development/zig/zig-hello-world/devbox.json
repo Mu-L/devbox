@@ -1,0 +1,10 @@
+{
+  "packages": {
+    "zig": "latest"
+  },
+  "shell": {
+    "scripts": {
+      "run_test": "zig build run test --summary all"
+    }
+  }
+}

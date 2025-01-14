@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-typescript",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc index.ts --outfile index.js",
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "typescript": "^4.6.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

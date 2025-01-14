@@ -1,0 +1,16 @@
+# Start on an empty directory and check that devbox init works correctly.
+
+! exists devbox.json
+exec devbox init
+exists devbox.json
+
+json.superset devbox.json expected.json
+
+# Second init should be a no-op with a warning
+exec devbox init
+stderr 'devbox.json already exists in'
+
+-- expected.json --
+{
+  "packages": []
+}

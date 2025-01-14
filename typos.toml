@@ -1,0 +1,12 @@
+[default.extend-words]
+AKE = "AKE"
+
+[files]
+extend-exclude=[
+  "go.mod", 
+  "*.svg", 
+  "**/testdata/**", 
+  "internal/cachehash/hash_test.go", 
+  "internal/devpkg/package_test.go",
+  "internal/nix/store_test.go",
+]

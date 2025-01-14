@@ -1,0 +1,13 @@
+{
+    "packages": [
+        "nim@1.6.12",
+        "nimble-unwrapped@0.14",
+        "openssl_1_1@latest"
+    ],
+    "shell": {
+        "init_hook": null,
+        "scripts": {
+            "nim-build": "nimble build --threads:on"
+        }
+    }
+}

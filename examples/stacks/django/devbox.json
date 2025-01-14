@@ -1,0 +1,45 @@
+{
+  "packages": {
+    "python": "latest",
+    "openssl": {
+      "version": "latest",
+      "outputs": ["out", "dev"]
+    },
+    "postgresql": "latest",
+    "zlib":       "latest"
+  },
+  "env": {
+    "PGPORT": "5434"
+  },
+  "shell": {
+    "init_hook": [
+      ". $VENV_DIR/bin/activate",
+      "pip install -r requirements.txt --use-pep517"
+    ],
+    "scripts": {
+      "create_db": [
+        "echo \"Creating DB\"",
+        "dropdb --if-exists todo_db",
+        "createdb todo_db",
+        "psql todo_db -c \"CREATE USER todo_user WITH PASSWORD 'secretpassword';\"",
+        "psql todo_db -c \"ALTER DATABASE todo_db OWNER TO todo_user;\"",
+        "psql todo_db -c \"ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO todo_user;\"",
+        "python todo_project/manage.py makemigrations",
+        "python todo_project/manage.py migrate"
+      ],
+      "initdb": [
+        "initdb"
+      ],
+      "server": [
+        "python todo_project/manage.py runserver"
+      ],
+      "test": [
+        "initdb",
+        "devbox services start",
+        "devbox run create_db",
+        "python todo_project/manage.py test",
+        "devbox services stop"
+      ]
+    }
+  }
+}

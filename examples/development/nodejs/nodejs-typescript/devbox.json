@@ -1,0 +1,14 @@
+{
+    "packages": [
+        "nodejs@18"
+    ],
+    "shell": {
+        "init_hook": [
+            "npm install",
+            "npm run build"
+        ],
+        "scripts": {
+            "run_test": "npm run start"
+        }
+    }
+}

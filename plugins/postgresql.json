@@ -1,0 +1,19 @@
+{
+    "name": "postgresql",
+    "version": "0.0.2",
+    "description": "To initialize the database run `initdb`.",
+    "packages": {
+        "glibcLocales": {
+            "version": "latest",
+            "platforms": ["x86_64-linux", "aarch64-linux"]
+        }
+    },
+    "env": {
+        "PGDATA": "{{ .Virtenv }}/data",
+        "PGHOST": "{{ .Virtenv }}"
+    },
+    "create_files": {
+        "{{ .Virtenv }}/data": "",
+        "{{ .Virtenv }}/process-compose.yaml": "postgresql/process-compose.yaml"
+    }
+}

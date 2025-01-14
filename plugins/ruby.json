@@ -1,0 +1,10 @@
+{
+  "name": "ruby",
+  "version": "0.0.2",
+  "env": {
+    "PATH": "{{ .Virtenv }}/bin/:$PATH",
+    "RUBY_CONFDIR": "{{ .Virtenv }}",
+    "GEMRC": "{{ .Virtenv }}/.gemrc",
+    "GEM_HOME": "{{ .Virtenv }}"
+  }
+}

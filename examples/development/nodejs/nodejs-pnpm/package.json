@@ -1,0 +1,10 @@
+{
+  "name": "nodejs-pnpm",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo building...",
+    "start": "node index.js"
+  },
+  "dependencies": {},
+  "packageManager": "pnpm@8.15.4"
+}

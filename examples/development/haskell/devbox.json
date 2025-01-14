@@ -1,0 +1,23 @@
+{
+  "packages": [
+    "ghc@latest",
+    "gmp@latest",
+    "stack@latest",
+    "cabal-install@latest",
+    "zlib@latest",
+    "hpack@latest"
+  ],
+  "env": {
+    "PATH": "$PATH:/usr/bin"
+  },
+  "shell": {
+    "init_hook": null,
+    "scripts": {
+      "run_test": [
+        "cd my-project",
+        "stack build",
+        "stack exec my-project-exe"
+      ]
+    }
+  }
+}

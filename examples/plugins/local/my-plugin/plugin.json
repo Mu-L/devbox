@@ -1,0 +1,24 @@
+{
+  "name": "my-plugin",
+  "version": "0.0.1",
+  "description": "Example custom plugin",
+  "env": {
+    "MY_FOO_VAR": "BAR"
+  },
+  "create_files": {
+    /*
+this is a comment inside the create files
+    */
+    "{{ .Virtenv }}/empty-dir": "",
+    "{{ .Virtenv }}/some-file": "some-file.txt",
+    "{{ .DevboxDir }}/some-file.txt": "some-file.txt",
+    "{{ .Virtenv }}/process-compose.yaml": "process-compose.yaml"
+  },
+  "shell": {
+      // this is a comment before init-hooks
+      "init_hook": [
+          "echo \"ran local plugin init hook\"",
+          "export MY_INIT_HOOK_VAR=BAR"
+      ]
+  }
+}

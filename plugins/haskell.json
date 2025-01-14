@@ -1,0 +1,12 @@
+{
+  "name": "haskell",
+  "version": "0.0.2",
+  "description": "Haskell plugin",
+  "packages": [
+    "path:{{ .Virtenv }}/flake"
+  ],
+  "__remove_trigger_package": true,
+  "create_files": {
+    "{{ .Virtenv }}/flake/flake.nix": "haskell/flake.nix"
+  }
+}

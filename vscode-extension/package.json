@@ -1,15 +1,15 @@
 {
   "name": "devbox",
-  "displayName": "devbox by jetpack.io",
+  "displayName": "devbox by Jetify",
   "description": "devbox integration for VSCode",
-  "version": "0.0.2",
+  "version": "0.1.6",
   "icon": "assets/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jetpack-io/devbox.git",
+    "url": "https://github.com/jetify-com/devbox.git",
     "directory": "vscode-extension"
   },
-  "author": "jetpack-io",
+  "author": "Jetify",
   "publisher": "jetpack-io",
   "engines": {
     "vscode": "^1.72.0"
@@ -26,6 +26,26 @@
       {
         "command": "devbox.setupDevContainer",
         "title": "Devbox: Generate Dev Containers config files"
+      },
+      {
+        "command": "devbox.reopen",
+        "title": "Devbox: Reopen in Devbox shell environment"
+      },
+      {
+        "command": "devbox.install",
+        "title": "Devbox: Install - Install packages in your devbox project"
+      },
+      {
+        "command": "devbox.update",
+        "title": "Devbox: Update - Update packages in your devbox project"
+      },
+      {
+        "command": "devbox.search",
+        "title": "Devbox: Search - Search for packages for your devbox project"
+      },
+      {
+        "command": "devbox.generateDockerfile",
+        "title": "Devbox: Generate a Dockerfile from devbox.json"
       },
       {
         "command": "devbox.add",
@@ -55,6 +75,22 @@
           "when": "devbox.configFileExists == true"
         },
         {
+          "command": "devbox.reopen",
+          "when": "devbox.configFileExists == true"
+        },
+        {
+          "command": "devbox.install",
+          "when": "devbox.configFileExists == true"
+        },
+        {
+          "command": "devbox.update",
+          "when": "devbox.configFileExists == true"
+        },
+        {
+          "command": "devbox.search",
+          "when": "devbox.configFileExists == true"
+        },
+        {
           "command": "devbox.add",
           "when": "devbox.configFileExists == true"
         },
@@ -76,6 +112,12 @@
         }
       ]
     },
+    "jsonValidation": [
+      {
+        "fileMatch": "devbox.json",
+        "url": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json"
+      }
+    ],
     "configuration": {
       "title": "devbox",
       "properties": {
@@ -83,6 +125,11 @@
           "type": "boolean",
           "default": true,
           "description": "Automatically run devbox shell when terminal is opened."
+        },
+        "devbox.enableDebugMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enables debug mode for this extension which creates an extension.log in .devbox/ directory. Currently only works for 'Devbox: Reopen in Devbox shell environment' command."
         }
       }
     }
@@ -96,16 +143,24 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.72.0",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.0",
     "@types/node": "16.x",
+    "@types/node-fetch": "^2",
+    "@types/vscode": "^1.72.0",
+    "@types/which": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
+    "@vscode/test-electron": "^2.1.5",
     "eslint": "^8.24.0",
     "glob": "^8.0.3",
     "mocha": "^10.0.0",
-    "typescript": "^4.8.4",
-    "@vscode/test-electron": "^2.1.5"
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@types/node": "16.x",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2",
+    "which": "^3.0.0"
   }
 }

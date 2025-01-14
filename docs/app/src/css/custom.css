@@ -9,7 +9,7 @@
 @font-face {
     font-family: 'NaN Hyena Noon VF';
     font-weight: 100 650;
-    src: url("https://www.jetpack.io/assets/fonts/HyenaNoon-VF.woff2") format("woff2");
+    src: url("https://www.jetify.com/assets/fonts/HyenaNoon-VF.woff2") format("woff2");
 }
 
 
@@ -109,8 +109,12 @@ aside>div {
         mask-image: url("/img/discord.svg");
         mask-repeat: no-repeat;
         mask-size: cover;
-        margin-left: 12px;
-        margin-right: 12px;
+        margin-left: 8px;
+        margin-right: 8;
+    }
+    .header-text-link{
+        padding-top: 2px;
+        height: 32px;
     }
     [data-theme='dark'] .header-github-link::before {
         background-color: var(--moon);
@@ -118,6 +122,17 @@ aside>div {
     [data-theme='dark'] .header-discord-link::before {
         background-color: var(--moon);
     }
+}
+
+[data-theme='dark'] .DocSearch {
+    --docsearch-highlight-color: var(--cosmos);
+    --docsearch-searchbox-shadow: inset 0 0 0 2px var(--cosmos);
+    --docsearch-logo-color: var(--moon) !important;
+}
+
+.cls-1,
+.cls-2 {
+    fill: var(--moon) !important;
 }
 
 h1,

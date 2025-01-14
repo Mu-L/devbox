@@ -1,9 +1,0 @@
-{
-  "name": "nodejs-yarn",
-  "main": "index.js",
-  "scripts": {
-    "build": "echo 'building...'",
-    "start": "echo 'starting...'"
-  },
-  "dependencies": {}
-}

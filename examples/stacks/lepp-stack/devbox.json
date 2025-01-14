@@ -1,0 +1,37 @@
+{
+  "packages": [
+    "curl@latest",
+    "postgresql@latest",
+    "php@latest",
+    "php83Extensions.pgsql@latest",
+    "nginx@latest"
+  ],
+  "env": {
+    "NGINX_WEB_PORT": "8089",
+    "NGINX_WEB_ROOT": "../../../my_app",
+    "PGPORT": "5433",
+    "PGHOST": "/tmp/devbox/lepp"
+  },
+  "shell": {
+    "scripts": {
+      "create_db": [
+        "dropdb --if-exists devbox_lepp",
+        "createdb devbox_lepp",
+        "psql devbox_lepp < setup_postgres_db.sql"
+      ],
+      "init_db": "initdb",
+      "run_test": [
+        "mkdir -p /tmp/devbox/lepp",
+        "rm -rf .devbox/virtenv/postgresql/data",
+        "initdb",
+        "devbox services up -b",
+        "echo 'sleep 2 second for the postgres server to initialize.' && sleep 2",
+        "dropdb --if-exists devbox_lepp",
+        "createdb devbox_lepp",
+        "psql devbox_lepp < setup_postgres_db.sql",
+        "curl localhost:$NGINX_WEB_PORT",
+        "devbox services stop"
+      ]
+    }
+  }
+}

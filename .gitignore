@@ -10,6 +10,7 @@
 # Editors
 .idea
 .vscode
+.zed
 
 # NodeJS
 node_modules
@@ -27,3 +28,17 @@ __pycache__/
 # Java
 *.class
 *.jar
+
+# devcontainer
+*.devcontainer
+
+# test specific files
+.test_tmp_*
+
+# deployment
+.vercel
+.yarn
+
+# Nix
+vendor/
+result

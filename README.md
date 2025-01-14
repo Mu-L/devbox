@@ -1,28 +1,42 @@
 <picture>
-	<source media="(prefers-color-scheme: dark)" srcset="docs/app/static/img/devbox_logo_dark.svg">
-	<source media="(prefers-color-scheme: light)" srcset="docs/app/static/img/devbox_logo_light.svg">
-	<img alt="Devbox logo." src="docs/app/static/img/devbox_logo_light.svg">
+ <source media="(prefers-color-scheme: dark)" srcset="docs/app/static/img/devbox_logo_dark.svg">
+ <source media="(prefers-color-scheme: light)" srcset="docs/app/static/img/devbox_logo_light.svg">
+ <img alt="Devbox logo." src="docs/app/static/img/devbox_logo_light.svg">
 </picture>
 
 # Devbox
 
-### Instant, easy, and predictable shells and containers
+### Instant, easy, and predictable development environments
 
-[![Join Discord](https://img.shields.io/discord/903306922852245526?color=7389D8&label=discord&logo=discord&logoColor=ffffff)](https://discord.gg/agbskCJXk2) ![License: Apache 2.0](https://img.shields.io/github/license/jetpack-io/devbox) [![version](https://img.shields.io/github/v/release/jetpack-io/devbox?color=green&label=version&sort=semver)](https://github.com/jetpack-io/devbox/releases) [![tests](https://github.com/jetpack-io/devbox/actions/workflows/release.yml/badge.svg)](https://github.com/jetpack-io/devbox/actions/workflows/release.yml?branch=main)
+[![Join Discord](https://img.shields.io/discord/903306922852245526?color=7389D8&label=discord&logo=discord&logoColor=ffffff&cacheSeconds=1800)](https://discord.gg/jetify) ![License: Apache 2.0](https://img.shields.io/github/license/jetify-com/devbox) [![version](https://img.shields.io/github/v/release/jetify-com/devbox?color=green&label=version&sort=semver)](https://github.com/jetify-com/devbox/releases) [![tests](https://github.com/jetify-com/devbox/actions/workflows/cli-post-release.yml/badge.svg)](https://github.com/jetify-com/devbox/actions/workflows/cli-release.yml?branch=main) [![Built with Devbox](https://www.jetify.com/img/devbox/shield_galaxy.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
 
 ## What is it?
 
-[Devbox](https://www.jetpack.io/devbox/) is a command-line tool that lets you easily create isolated shells and containers. You start by defining the list of packages required by your development environment, and devbox uses that definition to create an isolated environment just for your application.
+[Devbox](https://www.jetify.com/devbox/) is a command-line tool that lets you easily create isolated shells for development. You start by defining the list of packages required by your development environment, and devbox uses that definition to create an isolated environment just for your application.
 
-In practice, Devbox works similar to a package manager like `yarn` – except the packages it manages are at the operating-system level (the sort of thing you would normally install with `brew` or `apt-get`).
+In practice, Devbox works similar to a package manager like `yarn` – except the packages it manages are at the operating-system level (the sort of thing you would normally install with `brew` or `apt-get`). With Devbox, you can install over [400,000 package versions](https://www.nixhub.io) from the Nix Package Registry
 
-Devbox was originally developed by [jetpack.io](https://www.jetpack.io) and is internally powered by `nix`.
+Devbox was originally developed by [Jetify](https://www.jetify.com) and is internally powered by `nix`.
 
 ## Demo
+
+You can try out Devbox in your browser using the button below:
+
+[![Open In Devspace](https://www.jetify.com/img/devbox/open-in-devspace.svg)](https://auth.jetify.com/devspace/templates/tutorial)
 
 The example below creates a development environment with `python 2.7` and `go 1.18`, even though those packages are not installed in the underlying machine:
 
 ![screen cast](https://user-images.githubusercontent.com/279789/186491771-6b910175-18ec-4c65-92b0-ed1a91bb15ed.svg)
+
+## Installing Devbox
+
+Use the following install script to get the latest version of Devbox:
+
+```sh
+curl -fsSL https://get.jetify.com/devbox | bash
+```
+
+Read more on the [Devbox docs](https://www.jetify.com/devbox/docs/installing_devbox/).
 
 ## Benefits
 
@@ -42,29 +56,16 @@ Devbox can create isolated environments right on your laptop, without an extra-l
 
 Are you working on multiple projects, all of which need different versions of the same binary? Instead of attempting to install conflicting versions of the same binary on your laptop, create an isolated environment for each project, and use whatever version you want for each.
 
-### Instantly turn your application into a container
+### Take your environment with you
 
-Devbox analyzes your source code and instantly turns it into an OCI-compliant image that can be deployed to any cloud. The image is optimized for speed, size, security and caching ... and without needing to write a `Dockerfile`. And unlike [buildpacks](https://buildpacks.io/), it does it quickly.
+Devbox's dev environments are _portable_. We make it possible to declare your
+environment exactly once, and use that single definition in several different ways, including:
 
-### Stop declaring dependencies twice
-
-Your application often needs the same set of dependencies when you are developing on your laptop, and when you're packaging it as a container ready to deploy to the cloud. Devbox's dev environments are _isomorphic_: meaning that we can turn them into both a local shell environment or a cloud-ready container, all without having to repeat yourself twice.
-
-## Installing Devbox
-
-In addition to installing Devbox itself, you will need to install `nix` and `docker` since Devbox depends on them:
-
-1. Install [Nix Package Manager](https://nixos.org/download.html). (Don't worry, you don't need to learn Nix.)
-
-2. Install [Docker Engine](https://docs.docker.com/engine/install/) or [Docker Desktop](https://www.docker.com/get-started/). Note that docker is only needed if you want to create containers – the shell functionality works without it.
-
-3. Install Devbox:
-
-   ```sh
-   curl -fsSL https://get.jetpack.io/devbox | bash
-   ```
-
-Read more on the [Devbox docs](https://www.jetpack.io/devbox/docs/installing_devbox/).
++ A local shell created through `devbox shell`
++ A devcontainer you can use with VSCode
++ A Dockerfile so you can build a production image with the exact same tools you
+  used for development.
++ A remote development environment in the cloud that mirrors your local environment.
 
 ## Quickstart: Fast, Deterministic Shell
 
@@ -80,18 +81,20 @@ In this quickstart we’ll create a development shell with specific tools instal
 
    This creates a `devbox.json` file in the current directory. You should commit it to source control.
 
-3. Add command-line tools from [Nix Packages](https://search.nixos.org/packages). For example, to add Python 3.10:
+3. Add command-line tools from Nix. For example, to add Python 3.10:
 
    ```bash
-   devbox add python310
+   devbox add python@3.10
    ```
+
+   Search for more packages on [Nixhub.io](https://www.nixhub.io)
 
 4. Your `devbox.json` file keeps track of the packages you've added, it should now look like this:
 
    ```json
    {
       "packages": [
-         "python310"
+         "python@3.10"
        ]
    }
    ```
@@ -124,58 +127,25 @@ In this quickstart we’ll create a development shell with specific tools instal
    exit
    ```
 
-Read more on the [Devbox docs Quickstart](https://www.jetpack.io/devbox/docs/quickstart/).
-
-## Quickstart: Instant Docker Image
-
-Devbox makes it easy to package your application into an OCI-compliant container image. Devbox analyzes your code, automatically identifies the right toolchain needed by your project, and builds it into a docker image.
-
-1. Initialize your project with `devbox init` if you haven't already.
-
-2. Build the image:
-
-   ```bash
-   devbox build
-   ```
-
-   The resulting image is named `devbox`.
-
-3. Tag the image with a more descriptive name:
-
-   ```bash
-   docker tag devbox my-image:v0.1
-   ```
-
-### Auto-detected languages/stacks
-
-Devbox currently detects the following languages/stacks:
-
-- Go
-- Python ([See notes](planner/languages/python/))
-- NodeJS
-- PHP
-- static nginx (Experimental - [see notes](planner/languages/nginx))
-
-Want more languages? [Ask for a new Language](https://github.com/jetpack-io/devbox/issues) or contribute one via a Pull Request.
-Read more on the [Devbox docs Quickstart](https://www.jetpack.io/devbox/docs/quickstart/#package-your-application-as-a-docker-image).
+Read more on the [Devbox docs Quickstart](https://www.jetify.com/devbox/docs/quickstart/).
 
 ## Additional commands
 
 `devbox help` - see all commands
 
-`devbox plan` - see the configuration and steps Devbox will use to generate a container
-
-See the [CLI Reference](https://www.jetpack.io/devbox/docs/cli_reference/) for the full list of commands.
+See the [CLI Reference](https://www.jetify.com/devbox/docs/cli_reference/devbox/) for the full list of commands.
 
 ## Join our Developer Community
 
-- Chat with us by joining the [Jetpack.io Discord Server](https://discord.gg/agbskCJXk2) – we have a #devbox channel dedicated to this project.
-- File bug reports and feature requests using [Github Issues](https://github.com/jetpack-io/devbox/issues)
-- Follow us on [Jetpack's Twitter](https://twitter.com/jetpack_io) for product updates
++ Chat with us by joining the [Jetify Discord Server](https://discord.gg/jetify) – we have a #devbox channel dedicated to this project.
++ File bug reports and feature requests using [Github Issues](https://github.com/jetify-com/devbox/issues)
++ Follow us on [Jetify's Twitter](https://twitter.com/jetify_com) for product updates
 
 ## Contributing
 
 Devbox is an opensource project so contributions are always welcome. Please read [our contributing guide](CONTRIBUTING.md) before submitting pull requests.
+
+[Devbox development readme](devbox.md)
 
 ## Related Work
 
@@ -183,8 +153,9 @@ Thanks to [Nix](https://nixos.org/) for providing isolated shells.
 
 ## Translation
 
-- [Chinese](./translation/README-zh-CN.md)
++ [Chinese](./docs/translation/README-zh-CN.md)
++ [Korean](./docs/translation/README-ko-KR.md)
 
 ## License
 
-This project is proudly open-source under the [Apache 2.0 License](https://github.com/jetpack-io/devbox/blob/main/LICENSE)
+This project is proudly open-source under the [Apache 2.0 License](https://github.com/jetify-com/devbox/blob/main/LICENSE)

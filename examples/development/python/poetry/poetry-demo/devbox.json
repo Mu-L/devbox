@@ -1,0 +1,15 @@
+{
+  "packages": [
+    "python@latest",
+    "poetry@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "poetry install"
+    ],
+    "scripts": {
+      "run_test": "poetry run python -m poetry_demo",
+      "test": "poetry run pytest"
+    }
+  }
+}

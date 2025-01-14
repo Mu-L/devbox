@@ -3,15 +3,22 @@
 Print version information
 
 ```bash
-devbox version [flags]
+devbox version [update] [flags]
 ```
+
+## Subcommands
+
+* [devbox version update](devbox_version_update.md)	 - Check for a new version of devbox and update if available
+
 
 ## Options
 
-```text
-  -h, --help      help for version
-  -v, --verbose   Verbose: displays additional version information
-```
+<!-- Markdown Table of Options -->
+| Option | Description |
+| --- | --- |
+| `-h, --help` | help for version |
+| `-v, --verbose` | Verbose: displays additional version information |
+| `-q, --quiet` | Quiet mode: Suppresses logs. |
 
 ## SEE ALSO
 

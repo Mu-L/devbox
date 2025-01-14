@@ -1,0 +1,9 @@
+{
+  "packages": ["redis@latest"],
+  "shell": {
+    "init_hook": "",
+    "scripts": {
+      "redis-cli": "redis-cli"
+    }
+  }
+}

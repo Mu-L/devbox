@@ -1,0 +1,7 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "path:my-php-flake#hello": {},
+    "path:my-php-flake#php": {}
+  }
+}

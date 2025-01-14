@@ -1,0 +1,13 @@
+{
+  "packages": [
+    "elixir@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "mix deps.get"
+    ],
+    "scripts": {
+      "run_test": "mix run"
+    }
+  }
+}

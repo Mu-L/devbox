@@ -1,0 +1,18 @@
+{
+  "packages": [],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox!' > /dev/null"
+    ],
+    "scripts": {
+      "run_test": [
+        "./test.sh"
+      ]
+    }
+  },
+  "include": [
+    "github:jetify-com/devbox-plugin-example",
+    "github:jetify-com/devbox-plugin-example?dir=custom-dir",
+    "github:jetify-com/devbox-plugin-example/test/branch",
+  ]
+}

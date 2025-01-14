@@ -1,0 +1,72 @@
+{{- /*
+
+IF YOU EDIT THIS FILE, REMEMBER TO MAKE EQUIVALENT CHANGES TO shellrc_fish.tmpl
+
+This template defines the shellrc file that the devbox shell will run at
+startup.
+
+It includes the user's original shellrc, which varies depending on their shell.
+It will either be ~/.bashrc, ~/.zshrc, a path set in ENV, or something else. It
+also appends any user-defined shell hooks from devbox.json.
+
+Devbox needs to ensure that the shell's PATH, prompt, and a few other things are
+set correctly after the user's shellrc runs. The commands to do this are in
+the "Devbox Post-init Hook" section.
+
+This file is useful for debugging shell errors, so try to keep the generated
+content readable.
+
+*/ -}}
+
+{{- if .OriginalInitPath -}}
+if [ -f {{ .OriginalInitPath }} ]; then
+  . "{{ .OriginalInitPath }}"
+fi
+{{ end -}}
+
+# Begin Devbox Post-init Hook
+
+{{ with .ExportEnv -}}
+{{ . }}
+{{- end }}
+
+{{- /*
+We need to set HISTFILE here because when starting a new shell, the shell will
+ignore the existing value of HISTFILE.
+*/ -}}
+{{- if .HistoryFile }}
+HISTFILE="{{ .HistoryFile }}"
+{{- end }}
+
+# If the user hasn't specified they want to handle the prompt themselves,
+# prepend to the prompt to make it clear we're in a devbox shell.
+if [ -z "$DEVBOX_NO_PROMPT" ]; then
+  export PS1="(devbox) $PS1"
+fi
+
+{{- if .ShellStartTime }}
+# log that the shell is ready now!
+devbox log shell-ready {{ .ShellStartTime }}
+{{ end }}
+
+# End Devbox Post-init Hook
+
+# Run plugin and user init hooks from the devbox.json directory.
+working_dir="$(pwd)"
+cd "{{ .ProjectDir }}" || exit
+
+# Source the hooks file, which contains the project's init hooks and plugin hooks.
+. "{{ .HooksFilePath }}"
+
+cd "$working_dir" || exit
+
+{{- if .ShellStartTime }}
+# log that the shell is interactive now!
+devbox log shell-interactive {{ .ShellStartTime }}
+{{ end }}
+
+# Add refresh alias (only if it doesn't already exist)
+if ! type {{ .RefreshAliasName }} >/dev/null 2>&1; then
+  export {{ .RefreshAliasEnvVar }}='{{ .RefreshCmd }}'
+  alias {{ .RefreshAliasName }}='{{ .RefreshCmd }}'
+fi
